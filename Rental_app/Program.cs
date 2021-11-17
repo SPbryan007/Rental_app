@@ -3,8 +3,11 @@ using System.Collections.Generic;
 
 namespace Rental_app
 {
+ 
     class Program
     {
+      
+ 
         static void Main(string[] args)
         {
             Business b1 = new Business("11001215", "GlobalPorts srl");
@@ -16,13 +19,13 @@ namespace Rental_app
             port1.addMooring(moo1);
             port1.addMooring(moo2);
 
-            //Port port2 = new Port("Iquique Port", 12);
+            Port port2 = new Port("Iquique Port", 12);
 
-            //b1.addPort(port1);
-            //b1.addPort(port2);
+            b1.addPort(port1);
+            b1.addPort(port2);
 
             Customer customer = new Customer("John wick", "3528412");
-            Boat boat = new Sailboat("XSDD4522",Color.Black, 15.8,"1995", 4);
+            Boat boat = new Sailboat("XSDD4522", Color.Black, 15.8, "1995", 4);
             Rental rent = new Rental(port1.Base_price, boat, customer, new DateTime(2021, 11, 10), new DateTime(2021, 11, 15));
 
             Customer customer2 = new Customer("Juan Perez", "5492151");
@@ -63,7 +66,7 @@ namespace Rental_app
             });
 
             Filter<Rental> rf = new Filter<Rental>();
-            foreach (var r in rf.FilterBy(port_rents, new RentalPriceHigherThan(30000) ))
+            foreach (var r in rf.FilterBy(port_rents, new RentalPriceHigherThan(30000)))
             {
                 Console.WriteLine($"\n price : {r.calculate()}");
             }
@@ -105,7 +108,7 @@ namespace Rental_app
             moo1.Rentals.ForEach(i => { boats.Add(i.Boat); });
 
             Filter<Boat> bf = new Filter<Boat>();
-            foreach (var b in bf.FilterBy(boats,new BoatLenghtEqualsTo(8)))
+            foreach (var b in bf.FilterBy(boats, new BoatLenghtEqualsTo(8)))
             {
                 Console.WriteLine(
                      $"\nEslora : {b.Length} \n" +
